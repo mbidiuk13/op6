@@ -1,15 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 #include <time.h>
 #include "matrix_operation.h"
 #include "user_input.h"
 #include "random.h"
 
-#define MIN_ROWS 2
-#define MAX_ROWS 15
-#define MIN_RANDOM_VALUE -100
-#define MAX_RANDOM_VALUE 100
+#define MIN_ROWS (2)
+#define MAX_ROWS (15)
+#define MIN_RANDOM_VALUE (-100)
+#define MAX_RANDOM_VALUE (100)
 
 int main() {
     do {
@@ -38,7 +37,6 @@ int main() {
                 input_matrix_manually(A, b, rows, 5);
                 break;
             case 'a':
-                printf("\nAuto-filling matrix and vector with random values...\n");
                 generate_random_matrix(A, b, rows, MIN_RANDOM_VALUE, MAX_RANDOM_VALUE);
                 break;
             default:
@@ -57,8 +55,7 @@ int main() {
         }
 
         //рішення системи рівнянь
-        printf("\nStarting iterative solver...\n");
-        solve_system(A, b, x_prev, x, rows, epsilon);
+        solve_slae(A, b, x_prev, x, rows, epsilon);
 
         //виведення розв'язку
         printf("\nSolution found:\n");
@@ -67,7 +64,7 @@ int main() {
         }
 
         //перевірка розв'язку
-        verify_solution(A, b, rows, precision);
+        verify_solution(A, x, rows, precision);
 
         free_all(b, x, x_prev, A, rows);
 
